@@ -1,0 +1,21 @@
+<body>
+  <h1>제주 올레길 정보</h1>
+  <hr />
+  <table>
+    <th>코스별</th>
+    <th>코스명</th>
+    <th>거리(KM)</th>
+    <th>소요시간</th>
+    <th>시작/종점</th>
+    {% for item in olle_list%}
+    <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.acourse}}</td>
+      <td>{{item.course_name}}</td>
+      <td>{{item.distance}}</td>
+      <td>{{item.time_info}}</td>
+      <td>{{item.start_end_info}}</td>
+    </tr>
+    {%endfor%}
+  </table>
+</body>

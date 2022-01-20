@@ -1,0 +1,40 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+</script>
+
+<script>
+  const csrftoken = getCookie("csrftoken");
+
+  const formData = new FormData();
+  formData.append("a", 10);
+  formData.append("b", 20);
+  formData.append("c", 30);
+  const data2 = { a: 10, b: 20, c: 30 };
+  const data = axios({
+    url: "/first/req/json/",
+    method: "post",
+    data: JSON.stringify(data2),
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+  });
+  data.then(function (result) {
+    console.log(result.data);
+  }); //비동기 작업 후 처리되는 콜백
+</script>

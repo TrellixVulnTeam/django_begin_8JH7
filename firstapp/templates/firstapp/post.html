@@ -1,0 +1,25 @@
+<form action="/first/req/post/" method="post">
+  <input type="text" name="a" /><br />
+  <input type="text" name="b" /><br />
+  <input type="text" name="c" /><br />
+  {% csrf_token %}
+  <button>Send</button>
+</form>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  const data = axios({
+    url: "http://ggoreb.com/dinosaur/info.jsp",
+    method: "get",
+    params: { search: "중원구" },
+  });
+  data.then(function (result) {
+    let tempHtml = "";
+    datas = result.data;
+    for (let i = 0; i < datas.length; i++) {
+      let kind = datas[i]["kind"];
+      tempHtml += `<li>${kind}</li><br>`;
+    }
+    document.body.innerHTML = tempHtml;
+  }); //비동기 작업 후 처리되는 콜백
+</script>
